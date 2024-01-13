@@ -1,0 +1,29 @@
+[
+	{
+		"banner": "/assets/images/1.jpg",
+		"title": "Khanh dep trai",
+		"url": "How-to-Create-your-blog-domain",
+		"author": "Johnson smith",
+		"category": "Design",
+		"createdAt": "April 13, 2020",
+		"readDuration": "6min read"
+	},
+	{
+		"banner": "/assets/images/2.jpg",
+		"title": "Home to Customize your blog's theme with 3 simple steps",
+		"url": "How-to-Create-your-blog-domain",
+		"author": "Khanh",
+		"category": "Design",
+		"createdAt": "April 13, 2020",
+		"readDuration": "6min read"
+	},
+	{
+		"banner": "/assets/images/3.jpg",
+		"title": "Register a Domain or Subdomain With a Website Host",
+		"url": "How-to-Create-your-blog-domain",
+		"author": "Johnson smith",
+		"category": "Design",
+		"createdAt": "April 13, 2020",
+		"readDuration": "6min read"
+	}
+]
