@@ -13,9 +13,9 @@ router.get('/', async function (req, res, next) {
   }
 
   const blogStore = new blog();
-  const blogHandler = new blogHandler(blogStore);
+  const blogHandle = new blogHandler(blogStore);
 
-  const blogs = await blogHandler.getBlogs();
+  const blogs = await blogHandle.getBlogs();
   
   res.render('index', { title: 'Blog App', user: user, blogs: blogs });
 });

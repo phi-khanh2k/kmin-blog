@@ -34,6 +34,7 @@ class database {
         return new Promise((resolve, reject) => {
             this.connection.end(function (err) {
                 if (err) reject(err);
+                console.log("Closed!");
                 resolve();
             });
         })

@@ -155,10 +155,10 @@ Author URL: http://w3layouts.com
                             <div class="list-view list-view1">
                                 {{#each blogs}}
                                  <div class="grids5-info mt-3">
-                                    <a href="#blog-single" class="d-block zoom"><img src="{{this.banner}}" alt=""
+                                    <a href="/blog/{{this.id}}" class="d-block zoom"><img src="{{this.banner}}" alt=""
                                             class="img-fluid radius-image news-image"></a>
                                     <div class="blog-info align-self">
-                                        <a href="#blog-single" class="blog-desc1">{{this.title}}
+                                        <a href="/blog/{{this.id}}" class="blog-desc1">{{this.title}}
                                         </a>
                                         <div class="author align-items-center mt-3 mb-1">
                                             <a href="#author"> {{!-- Author --}} </a> in <a href="#url">{{this.category}}</a>

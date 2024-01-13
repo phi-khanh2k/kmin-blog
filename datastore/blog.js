@@ -1,24 +1,27 @@
 const database = require("./readandwrite");
 
 class blog extends database {
+	tableName = "";
+
 	constructor() {
 		super();
+		this.tableName = "blogs";
 	}
 
-	async getBlog() {
-		var sql = "SELECT * FROM blog";
+	async getBlogs() {
+		var sql = `SELECT * FROM ${this.tableName}`;
 		var result = await this.query(sql);
 		return result;
 	}
 
 	async getBlogById(id) {
-		var sql = "SELECT * FROM blog WHERE id = ?";
+		var sql = `SELECT * FROM ${this.tableName} WHERE id = ?`;
 		var result = await this.query(sql, [id]);
 		return result;
 	}
 
 	async getBlogByTitle(title) {
-		var sql = "SELECT * FROM blog WHERE title = ?";
+		var sql = `SELECT * FROM ${this.tableName} WHERE title = ?`;
 		var result = await this.query(sql, [title]);
 		return result;
 	}
