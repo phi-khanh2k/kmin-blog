@@ -1,4 +1,4 @@
-const database = require("./readandwrite");
+const { database } = require("./readandwrite");
 
 class blog extends database {
 	tableName = "";
