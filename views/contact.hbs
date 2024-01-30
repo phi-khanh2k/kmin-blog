@@ -161,16 +161,9 @@ Author URL: http://w3layouts.com
           </div>
         </div>
         <div class="contact-right">
-          <form action="/api/contact/" method="post" class="signin-form">
-            <!-- <div class="input-grids">
-              <input type="text" name="name" id="w3lName" placeholder="Your Name*" class="contact-input" required="" />
-              <input type="email" name="email" id="w3lSender" placeholder="Your Email*" class="contact-input"
-                required="" />
-              <input type="text" name="subject" id="w3lSubect" placeholder="Subject*" class="contact-input"
-                required="" />
-            </div> -->
+          <form action="/api/blogs/upload/banner" method="post" class="signin-form" enctype="multipart/form-data">
+
             <div class="form-input">
-              <!-- <textarea name="message" id="w3lMessage" placeholder="Type your message here*" required=""></textarea> -->
               <input type="file" name="banner" accept="image/*" />
               <input type="number" name="id" />
             </div>

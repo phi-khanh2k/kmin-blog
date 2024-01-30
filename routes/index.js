@@ -20,4 +20,8 @@ router.get('/', async function (req, res, next) {
   res.render('index', { title: 'Blog App', user: user, blogs: blogs });
 });
 
+router.get('/contact', async function (req, res, next) {
+  res.render('contact', { title: 'Contact' });
+})
+
 module.exports = router;

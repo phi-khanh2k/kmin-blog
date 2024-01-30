@@ -42,15 +42,16 @@ class database {
     }
 }
 
-var storage = multer.diskStorage({
+const storageConfig = multer.diskStorage({
     destination: function (req, file, cb) {
         cb(null, 'public/assets/images/')
     },
     filename: function (req, file, cb) {
-        cb(null, file.originalname)
+        var newFileName = `${Date.now()}-${file.originalname}`;
+        cb(null, newFileName)
     }
 })
 
-var upload = multer({ storage: storage })
+const upload = multer({ storage: storageConfig })
 
 module.exports = { database, upload };

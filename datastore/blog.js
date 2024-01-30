@@ -25,6 +25,12 @@ class blog extends database {
 		var result = await this.query(sql, [title]);
 		return result;
 	}
+
+	async updateBanner(id, bannerUrl) {
+		var sql = `UPDATE ${this.tableName} SET banner = ? WHERE id = ?`;
+		var result = await this.query(sql, [bannerUrl, id]);
+		return result;
+	}
 }
 
 module.exports = blog;
