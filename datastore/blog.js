@@ -1,35 +1,43 @@
-const { database } = require("./readandwrite");
+const { database } = require("./mongo");
+var ObjectId = require('mongoose').Types.ObjectId;
 
 class blog extends database {
-	tableName = "";
-
+	collection = null;
 	constructor() {
 		super();
-		this.tableName = "blogs";
+		this.collection = 'blogs';
 	}
 
-	async getBlogs() {
-		var sql = `SELECT * FROM ${this.tableName}`;
-		var result = await this.query(sql);
-		return result;
+	async getBlogs(search = null) {
+		return new Promise((resolve, reject) => {
+			let query = {}
+			if (search) {
+				query = { title: { $regex: search, $options: 'i' } }
+			}
+			console.log(query)
+			this.connection.collection(this.collection).find(query, function (err, result) {
+				if (err) throw reject(err);
+				resolve(result.toArray());
+			});
+		});
 	}
 
 	async getBlogById(id) {
-		var sql = `SELECT * FROM ${this.tableName} WHERE id = ?`;
-		var result = await this.query(sql, [id]);
-		return result;
-	}
-
-	async getBlogByTitle(title) {
-		var sql = `SELECT * FROM ${this.tableName} WHERE title = ?`;
-		var result = await this.query(sql, [title]);
-		return result;
+		return new Promise((resolve, reject) => {
+			this.connection.collection(this.collection).findOne({ _id: ObjectId(id) }, function (err, result) {
+				if (err) throw reject(err);
+				resolve(result.next());
+			});
+		});
 	}
 
 	async updateBanner(id, bannerUrl) {
-		var sql = `UPDATE ${this.tableName} SET banner = ? WHERE id = ?`;
-		var result = await this.query(sql, [bannerUrl, id]);
-		return result;
+		return new Promise((resolve, reject) => {
+			this.connection.collection(this.collection).updateOne({ _id: ObjectId(id) }, { $set: { banner: bannerUrl } }, function (err, result) {
+				if (err) throw reject(err);
+				resolve(result);
+			});
+		});
 	}
 }
 

@@ -3,9 +3,9 @@ class blogHandler {
 		this.blogStore = blogStore;
 	}
 
-	async getBlogs() {
+	async getBlogs(search = null) {
 		try {
-			const blogs = await this.blogStore.getBlogs();
+			const blogs = await this.blogStore.getBlogs(search);
 			return blogs
 		} catch (err) {
 			console.error(err)

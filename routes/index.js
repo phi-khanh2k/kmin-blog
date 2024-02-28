@@ -8,11 +8,9 @@ var router = express.Router();
 
 /* GET home page. */
 router.get('/', async function (req, res, next) {
-  // var user = {
-  //   name: "Khanh",
-  //   title: "Handsome",
-  //   avatar: "/assets/images/author.jpg",
-  // }
+
+  let search = req.query.search
+  console.log(search)
 
   const blogStore = new blog();
   const blogHandle = new blogHandler(blogStore);
@@ -20,9 +18,8 @@ router.get('/', async function (req, res, next) {
   const userStore = new user();
   const userHandle = new userHandler(userStore);
 
-  const blogs = await blogHandle.getBlogs();
+  const blogs = await blogHandle.getBlogs(search);
   const userData = await userHandle.getUser("65d379157b103404986b36de");
-  console.log(userData)
   
   res.render('index', { title: 'Blog App', user: userData, blogs: blogs });
 });
