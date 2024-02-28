@@ -12,12 +12,17 @@ router.post('/', async function (req, res, next) {
     res.status(400).send('Email is required');
     return;
   }
+  // define mailer and userStore
   const mailer = new Mailer();
-  const userDB = new user();
-  const handler = new userHandler(userDB, mailer);
+  const userStore = new user();
+
+  // define handler
+  const handler = new userHandler(userStore, mailer);
+
+  // save contact and send mail
   try {
-    const info = await handler.sendMail(req.body.email, req.body.content);
-    res.status(200).send(info);
+    const info = await handler.sendMail(req.body.email);
+    res.redirect('/');
     return;
   } catch (error) {
     console.log(error);

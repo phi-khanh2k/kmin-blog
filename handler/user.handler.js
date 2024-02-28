@@ -16,11 +16,14 @@ class userHandler {
 		}
 	}
 
-	async sendMail(email, content) {
+	async sendMail(email) {
 		if (!this.mailer) {
 			throw new Error('Mailer is not initialized');
 		}
-		const info = await this.mailer.sendMail(email, 'Welcome to our website', content);
+		// save email
+		// await this.userStore.SaveUser(email);
+		const content = `<h1>Hi ${email}! Welcome to our website</h1>`;
+		const info = await this.mailer.sendMail(email, 'Welcome to our website', null, content);
 		return info;
 	}
 }

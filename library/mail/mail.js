@@ -9,8 +9,8 @@ class Mailer {
 			port: 465,
 			secure: true,
 			auth: {
-				user: 'valakismyname2345@gmail.com',
-				pass: 'phcr ifoc iurt odof'
+				user: process.env.EMAIL,
+				pass: process.env.PASS
 			},
 			tls: {
 				rejectUnauthorized: false
@@ -19,14 +19,14 @@ class Mailer {
 	}
 
 	async sendMail(to, subject, text, html) {
-		const mailOptions = {
+		const mailPayload = {
 			from: 'Khanh Nguyen',
 			to,
 			subject,
 			text, // send plain text
 			html,
 		}
-		const info = await this.transporter.sendMail(mailOptions);
+		const info = await this.transporter.sendMail(mailPayload);
 		return info;
 	};
 }
