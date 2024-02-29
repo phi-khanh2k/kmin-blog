@@ -10,6 +10,7 @@ var router = express.Router();
 router.get('/', async function (req, res, next) {
 
   let search = req.query.search
+  let category = req.query.category
   console.log(search)
 
   const blogStore = new blog();
@@ -18,7 +19,7 @@ router.get('/', async function (req, res, next) {
   const userStore = new user();
   const userHandle = new userHandler(userStore);
 
-  const blogs = await blogHandle.getBlogs(search);
+  const blogs = await blogHandle.getBlogs(search, category);
   const userData = await userHandle.getUser("65d379157b103404986b36de");
   
   res.render('index', { title: 'Blog App', user: userData, blogs: blogs });

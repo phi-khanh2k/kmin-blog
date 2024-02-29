@@ -8,11 +8,14 @@ class blog extends database {
 		this.collection = 'blogs';
 	}
 
-	async getBlogs(search = null) {
+	async getBlogs(search = null, category = null) {
 		return new Promise((resolve, reject) => {
 			let query = {}
 			if (search) {
-				query = { title: { $regex: search, $options: 'i' } }
+				query = { title: { $regex: search } }
+			}
+			if (category) {
+				query = { ...query, category: category }
 			}
 			console.log(query)
 			this.connection.collection(this.collection).find(query, function (err, result) {
@@ -24,16 +27,16 @@ class blog extends database {
 
 	async getBlogById(id) {
 		return new Promise((resolve, reject) => {
-			this.connection.collection(this.collection).findOne({ _id: ObjectId(id) }, function (err, result) {
+			this.connection.collection(this.collection).findOne({ _id: new ObjectId(id) }, function (err, result) {
 				if (err) throw reject(err);
-				resolve(result.next());
+				resolve(result);
 			});
 		});
 	}
 
 	async updateBanner(id, bannerUrl) {
 		return new Promise((resolve, reject) => {
-			this.connection.collection(this.collection).updateOne({ _id: ObjectId(id) }, { $set: { banner: bannerUrl } }, function (err, result) {
+			this.connection.collection(this.collection).updateOne({ _id: new ObjectId(id) }, { $set: { banner: bannerUrl } }, function (err, result) {
 				if (err) throw reject(err);
 				resolve(result);
 			});
